@@ -91,13 +91,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'model',
                         'value' => function (Comment $model) {
-                            return $model->model . (($model->model_id) ? ' [' . $model->model_id . ']'
+                            return $model->model . (($model->model_id) ? ' [' . $model->id . ']'
                                 : '');
                         },
-                        'options' => ['style' => 'width:120px'],
+                        'options' => ['style' => 'width:250px'],
                     ],
                     // 'email:email',
                     // 'parent_id',
+                   //  'super_parent_id',
                     [
                         'class' => 'artsoft\grid\columns\StatusColumn',
                         'attribute' => 'status',
@@ -115,7 +116,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw',
                         'options' => ['style' => 'width:150px'],
                     ],
-                    // 'updated_at',
                     [
                         'attribute' => 'user_ip',
                         'options' => ['style' => 'width:100px'],

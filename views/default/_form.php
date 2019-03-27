@@ -52,21 +52,14 @@ use artsoft\widgets\ActiveForm;
                             </label>
                             <span><?= ($model->email) ? $model->email : Yii::t('yii', '(not set)') ?></span>
                         </div>
-
+                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['model'] ?> :
+                                <?= $model->attributeLabels()['user_ip'] ?> :
                             </label>
-                            <span><?= "$model->model->{$model->model_id}" ?></span>
+                            <span><?= $model->user_ip ?></span>
                         </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['parent_id'] ?> :
-                            </label>
-                            <span><?= $model->parent_id ?></span>
-                        </div>
-
+                        
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['created_at'] ?> :
@@ -80,19 +73,31 @@ use artsoft\widgets\ActiveForm;
                             </label>
                             <span><?= $model->updatedDate . ' ' . $model->updatedTime ?></span>
                         </div>
+                       
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['model'] ?> :
+                            </label>
+                            <span><?= $model->model ?></span>
+                        </div>
 
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['user_ip'] ?> :
+                                <?= $model->attributeLabels()['parent_id'] ?> :
                             </label>
-                            <span><?= $model->user_ip ?></span>
+                            <span><?= $model->parent_id ?></span>
                         </div>
 
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?=  $model->attributeLabels()['id'] ?>: </label>
+                            <span><?=  $model->id ?></span>
+                        </div>
+                        
                         <div class="form-group">
                             <?= Html::submitButton(Yii::t('art', 'Save'), ['class' => 'btn btn-primary']) ?>
 
-                            <?=
-                            Html::a(Yii::t('art', 'Delete'), ['/comment/default/delete', 'id' => $model->id], [
+                            <?= Html::a(Yii::t('art', 'Delete'), ['/comment/default/delete', 'id' => $model->id], [
                                 'class' => 'btn btn-default',
                                 'data' => [
                                     'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),

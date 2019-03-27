@@ -20,7 +20,7 @@ class CommentSearch extends Comment
     public function rules()
     {
         return [
-            [['id', 'model_id', 'user_id', 'parent_id', 'status', 'updated_at'], 'integer'],
+            [['id', 'model_id', 'user_id', 'parent_id', 'super_parent_id', 'status', 'updated_at'], 'integer'],
             [['model', 'username', 'email', 'content', 'user_ip', 'created_at', 'created_at_operand'], 'safe'],
         ];
     }
@@ -72,25 +72,26 @@ class CommentSearch extends Comment
             'model_id' => $this->model_id,
             'user_id' => $this->user_id,
             'parent_id' => $this->parent_id,
+            'super_parent_id' => $this->super_parent_id,
             //'status' => $this->status,
             'updated_at' => $this->updated_at,
         ]);
-
+        
         switch ($this->created_at_operand) {
             case '=':
-                $query->andFilterWhere(['>=', 'created_at', strtotime($this->created_at)]);
-                $query->andFilterWhere(['<=', 'created_at', strtotime($this->created_at . ' 23:59:59')]);
+                $query->andFilterWhere(['>=', 'created_at', ($this->created_at) ? strtotime($this->created_at) : null]);
+                $query->andFilterWhere(['<=', 'created_at', ($this->created_at) ? strtotime($this->created_at . ' 23:59:59') : null]);
                 break;
             case '>':
-                $query->andFilterWhere(['>', 'created_at', strtotime($this->created_at . ' 23:59:59')]);
+                $query->andFilterWhere(['>', 'created_at', ($this->created_at) ? strtotime($this->created_at . ' 23:59:59') : null]);
                 break;
             case '<':
-                $query->andFilterWhere(['<', 'created_at', strtotime($this->created_at)]);
+                $query->andFilterWhere(['<', 'created_at', ($this->created_at) ? strtotime($this->created_at) : null]);
                 break;
             default:
                 break;
         }
-
+       
         $query->andFilterWhere(['like', 'model', $this->model])
             ->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'email', $this->email])
