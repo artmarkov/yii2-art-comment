@@ -11,52 +11,50 @@ $commentsAsset = CommentsAsset::register($this);
 Comments::getInstance()->commentsAssetUrl = $commentsAsset->baseUrl;
 ?>
 
-    <div class="pull-<?= $position ?> col-xs-12 col-md-<?= $width ?> widget-height-<?= $height ?>">
-        <div class="panel panel-default dw-widget">
-            <div class="panel-heading"><?= Yii::t('art', 'Comments Activity') ?></div>
-            <div class="panel-body">
+<div class="panel panel-default dw-widget">
+    <div class="panel-heading"><?= Yii::t('art', 'Comments Activity') ?></div>
+    <div class="panel-body">
 
-                <?php if (count($recentComments)): ?>
-                    <div class="clearfix">
-                        <?php foreach ($recentComments as $comment) : ?>
+        <?php if (count($recentComments)): ?>
+            <div class="clearfix">
+                <?php foreach ($recentComments as $comment) : ?>
 
-                            <div class="clearfix comment">
-                                <div class="avatar">
-                                    <img src="<?= Comments::getInstance()->renderUserAvatar($comment->user_id) ?>"/>
-                                </div>
+                    <div class="clearfix comment">
+                        <div class="avatar">
+                            <img src="<?= Comments::getInstance()->renderUserAvatar($comment->user_id) ?>"/>
+                        </div>
 
-                                <div class="comment-content">
-                                    <div class="comment-header">
-                                        <a class="author"><?= Html::encode($comment->getAuthor()); ?></a>
-                                        <span class="time dot-left dot-right">
-                                            <?= "{$comment->createdDate} {$comment->createdTime}" ?>
-                                        </span>
-                                    </div>
-                                    <div class="comment-text">
-                                        <?= HtmlPurifier::process(mb_substr(Html::encode($comment->content), 0, 64, "UTF-8")); ?>
-                                        <?= (strlen($comment->content) > 64) ? '...' : '' ?>
-                                    </div>
-                                </div>
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <a class="author"><?= Html::encode($comment->getAuthor()); ?></a>
+                                <span class="time dot-left dot-right">
+                                    <?= "{$comment->createdDate} {$comment->createdTime}" ?>
+                                </span>
                             </div>
-
-                        <?php endforeach; ?>
+                            <div class="comment-text">
+                                <?= HtmlPurifier::process(mb_substr(Html::encode($comment->content), 0, 64, "UTF-8")); ?>
+                                <?= (strlen($comment->content) > 64) ? '...' : '' ?>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dw-quick-links">
-                        <?php $list = [] ?>
-                        <?php foreach ($comments as $comment) : ?>
-                            <?php $list[] = Html::a("<b>{$comment['count']}</b> {$comment['label']}", $comment['url']); ?>
-                        <?php endforeach; ?>
-                        <?= implode(' | ', $list) ?>
-                    </div>
-
-                <?php else: ?>
-                    <h4><em><?= Yii::t('art', 'No comments found.') ?></em></h4>
-                <?php endif; ?>
-
+                <?php endforeach; ?>
             </div>
-        </div>
+
+            <div class="dw-quick-links">
+                <?php $list = [] ?>
+                <?php foreach ($comments as $comment) : ?>
+                    <?php $list[] = Html::a("<b>{$comment['count']}</b> {$comment['label']}", $comment['url']); ?>
+                <?php endforeach; ?>
+                <?= implode(' | ', $list) ?>
+            </div>
+
+        <?php else: ?>
+            <h4><em><?= Yii::t('art', 'No comments found.') ?></em></h4>
+        <?php endif; ?>
+
     </div>
+</div>
 <?php
 $css = <<<CSS
 .dw-widget{

@@ -46,9 +46,6 @@ class Comments extends DashboardWidget
             }
 
             return $this->render('comments', [
-                'height' => $this->height,
-                'width' => $this->width,
-                'position' => $this->position,
                 'comments' => $this->options,
                 'recentComments' => $recentComments,
             ]);
