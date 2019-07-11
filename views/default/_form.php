@@ -19,7 +19,7 @@ use artsoft\widgets\ActiveForm;
     ?>
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -33,12 +33,32 @@ use artsoft\widgets\ActiveForm;
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="record-info">
 
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?=  $model->attributeLabels()['id'] ?>: </label>
+                            <span><?=  $model->id ?></span>
+                        </div>
+                        
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['created_at'] ?> :
+                            </label>
+                            <span><?= $model->createdDate . ' ' . $model->createdTime ?></span>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <label class="control-label" style="float: left; padding-right: 5px;">
+                                <?= $model->attributeLabels()['updated_at'] ?> :
+                            </label>
+                            <span><?= $model->updatedDate . ' ' . $model->updatedTime ?></span>
+                        </div>
+                       
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['username'] ?> :
@@ -62,20 +82,6 @@ use artsoft\widgets\ActiveForm;
                         
                         <div class="form-group clearfix">
                             <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['created_at'] ?> :
-                            </label>
-                            <span><?= $model->createdDate . ' ' . $model->createdTime ?></span>
-                        </div>
-
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?= $model->attributeLabels()['updated_at'] ?> :
-                            </label>
-                            <span><?= $model->updatedDate . ' ' . $model->updatedTime ?></span>
-                        </div>
-                       
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
                                 <?= $model->attributeLabels()['model'] ?> :
                             </label>
                             <span><?= $model->model ?></span>
@@ -88,12 +94,6 @@ use artsoft\widgets\ActiveForm;
                             <span><?= $model->parent_id ?></span>
                         </div>
 
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;">
-                                <?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
-                        </div>
-                        
                         <div class="form-group">
                             <?= Html::submitButton(Yii::t('art', 'Save'), ['class' => 'btn btn-primary']) ?>
 
